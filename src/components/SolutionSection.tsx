@@ -87,13 +87,15 @@ const SolutionSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative flex items-center justify-center"
+            className="relative flex items-center justify-center lg:justify-end"
           >
-            <img
-              src={brazilMapImg}
-              alt="Mapa do Brasil com rotas logísticas saindo do Espírito Santo"
-              className="w-full max-w-lg rounded-2xl shadow-elevated"
-            />
+            <div className="w-full max-w-md lg:max-w-full aspect-square rounded-2xl shadow-elevated overflow-hidden bg-[hsl(var(--navy))]">
+              <img
+                src={brazilMapImg}
+                alt="Mapa do Brasil com rotas logísticas saindo do Espírito Santo"
+                className="w-full h-full object-contain p-6"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
