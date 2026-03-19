@@ -25,7 +25,7 @@ const CtaSection = () => {
             transition={{ delay: 0.1 }}
             className="font-heading text-3xl md:text-5xl font-bold mt-3 mb-6"
           >
-            Sua empresa pode estar pagando ICMS a mais do que deveria
+            Sua empresa pode estar pagando mais ICMS do que deveria
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ const CtaSection = () => {
             transition={{ delay: 0.2 }}
             className="text-primary-foreground/70 text-lg mb-10 max-w-xl mx-auto"
           >
-            Solicite um diagnóstico gratuito e descubra quanto sua operação pode economizar com os incentivos fiscais do Espírito Santo.
+            Solicite um diagnóstico gratuito e descubra quanto sua operação pode economizar com os incentivos fiscais do Espírito Santo — com redução de até 90% da carga de ICMS.
           </motion.p>
 
           <motion.div
@@ -45,7 +45,7 @@ const CtaSection = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           >
             <a
-              href="https://wa.me/5527999999999"
+              href="https://wa.me/5527992915203"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-foreground font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity"
@@ -63,7 +63,7 @@ const CtaSection = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-primary-foreground/60"
           >
             <span className="flex items-center gap-2">
-              <Phone size={14} /> +55 (27) 9 9999-9999
+              <Phone size={14} /> +55 (27) 9 9291-5203
             </span>
             <span className="flex items-center gap-2">
               <Mail size={14} /> contato@bluestoneconsultoria.com.br
