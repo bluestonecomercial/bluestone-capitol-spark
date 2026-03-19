@@ -8,7 +8,7 @@ const incentives = [
     tagline: "Operações interestaduais com carga mínima",
     highlights: [
       "Redução de até 90% da carga tributária de ICMS",
-      "ICMS efetivo a partir de 1,14% em operações interestaduais",
+      "ICMS efetivo de exatamente 1,14% nas vendas interestaduais para todo o Brasil",
       "Aplicável a importação, distribuição e e-commerce",
       "Enquadramento legal com segurança jurídica total",
     ],
