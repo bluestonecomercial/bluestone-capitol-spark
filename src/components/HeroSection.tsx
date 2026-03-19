@@ -29,7 +29,7 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6"
           >
-            Reduza até 12% de ICMS e transforme o Espírito Santo na{" "}
+            Reduza até 90% da carga de ICMS e transforme o Espírito Santo na{" "}
             <span className="text-gold">base estratégica</span> da sua operação
           </motion.h1>
 
@@ -41,7 +41,7 @@ const HeroSection = () => {
           >
             Estruturamos operações de importação, distribuição e e-commerce com
             incentivos fiscais legais do ES — gerando economia real e vantagem
-            competitiva para sua empresa.
+            competitiva sustentável para a sua empresa.
           </motion.p>
 
           <motion.div

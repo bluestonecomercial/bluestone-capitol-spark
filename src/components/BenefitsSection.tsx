@@ -4,7 +4,7 @@ import { TrendingUp, Percent, MapPin, Zap } from "lucide-react";
 const benefits = [
   {
     icon: Percent,
-    metric: "Até 12%",
+    metric: "Até 90%",
     title: "Redução de ICMS",
     desc: "Incentivos fiscais do ES aplicados legalmente à sua operação de importação e distribuição.",
   },
@@ -24,7 +24,7 @@ const benefits = [
     icon: Zap,
     metric: "Escala Nacional",
     title: "Escalabilidade",
-    desc: "Estrutura preparada para crescer — atendia todo o Brasil a partir de uma base tributariamente otimizada.",
+    desc: "Estrutura preparada para crescer — atenda todo o Brasil a partir de uma base tributariamente otimizada.",
   },
 ];
 
