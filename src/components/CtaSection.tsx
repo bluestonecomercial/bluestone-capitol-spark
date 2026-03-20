@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, Mail } from "lucide-react";
 
-const CtaSection = () => {
+interface CtaSectionProps {
+  onDiagnosticOpen: () => void;
+}
+
+const CtaSection = ({ onDiagnosticOpen }: CtaSectionProps) => {
   return (
     <section id="cta" className="py-24 lg:py-32 bg-gradient-hero text-primary-foreground relative overflow-hidden">
-      {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl" />
 
@@ -44,15 +47,13 @@ const CtaSection = () => {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           >
-            <a
-              href="https://wa.me/5527992915203"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-foreground font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity"
+            <button
+              onClick={onDiagnosticOpen}
+              className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-foreground font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.97]"
             >
               Solicitar Diagnóstico Gratuito
               <ArrowRight size={18} />
-            </a>
+            </button>
           </motion.div>
 
           <motion.div
