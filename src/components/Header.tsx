@@ -10,7 +10,11 @@ const navItems = [
   { label: "Especialistas", href: "#especialistas" },
 ];
 
-const Header = () => {
+interface HeaderProps {
+  onDiagnosticOpen: () => void;
+}
+
+const Header = ({ onDiagnosticOpen }: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -48,12 +52,12 @@ const Header = () => {
               {item.label}
             </a>
           ))}
-          <a
-            href="#cta"
-            className="bg-gradient-gold text-foreground font-semibold text-sm px-5 py-2.5 rounded-lg hover:opacity-90 transition-opacity"
+          <button
+            onClick={onDiagnosticOpen}
+            className="bg-gradient-gold text-foreground font-semibold text-sm px-5 py-2.5 rounded-lg hover:opacity-90 transition-opacity active:scale-[0.97]"
           >
             Diagnóstico Gratuito
-          </a>
+          </button>
         </nav>
 
         {/* Mobile toggle */}
@@ -82,13 +86,15 @@ const Header = () => {
               {item.label}
             </a>
           ))}
-          <a
-            href="#cta"
-            onClick={() => setMenuOpen(false)}
-            className="block mt-2 bg-gradient-gold text-foreground font-semibold text-sm px-5 py-2.5 rounded-lg text-center"
+          <button
+            onClick={() => {
+              setMenuOpen(false);
+              onDiagnosticOpen();
+            }}
+            className="block w-full mt-2 bg-gradient-gold text-foreground font-semibold text-sm px-5 py-2.5 rounded-lg text-center"
           >
             Diagnóstico Gratuito
-          </a>
+          </button>
         </motion.div>
       )}
     </motion.header>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
@@ -10,12 +11,16 @@ import AuthoritySection from "@/components/AuthoritySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
+import DiagnosticModal from "@/components/DiagnosticModal";
 
 const Index = () => {
+  const [diagnosticOpen, setDiagnosticOpen] = useState(false);
+  const openDiagnostic = () => setDiagnosticOpen(true);
+
   return (
     <div className="min-h-screen">
-      <Header />
-      <HeroSection />
+      <Header onDiagnosticOpen={openDiagnostic} />
+      <HeroSection onDiagnosticOpen={openDiagnostic} />
       <ProblemSection />
       <SolutionSection />
       <BenefitsSection />
@@ -24,8 +29,9 @@ const Index = () => {
       <SpecialistsSection />
       <AuthoritySection />
       <TestimonialsSection />
-      <CtaSection />
+      <CtaSection onDiagnosticOpen={openDiagnostic} />
       <Footer />
+      <DiagnosticModal open={diagnosticOpen} onOpenChange={setDiagnosticOpen} />
     </div>
   );
 };

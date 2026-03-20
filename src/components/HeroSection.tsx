@@ -2,7 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import heroImg from "@/assets/hero-port.jpg";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onDiagnosticOpen: () => void;
+}
+
+const HeroSection = ({ onDiagnosticOpen }: HeroSectionProps) => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background image */}
@@ -50,13 +54,13 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.9 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a
-              href="#cta"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-foreground font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity"
+            <button
+              onClick={onDiagnosticOpen}
+              className="inline-flex items-center justify-center gap-2 bg-gradient-gold text-foreground font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.97]"
             >
               Solicite seu Diagnóstico Gratuito
               <ArrowRight size={18} />
-            </a>
+            </button>
             <a
               href="#solucao"
               className="inline-flex items-center justify-center gap-2 border border-primary-foreground/30 text-primary-foreground font-medium px-8 py-4 rounded-lg text-base hover:bg-primary-foreground/10 transition-colors"
