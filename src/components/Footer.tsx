@@ -44,7 +44,7 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-primary-foreground text-sm mb-4">Redes Sociais</h4>
             <div className="space-y-3">
               <a
-                href="https://instagram.com/bluestoneconsultoriadoes"
+                href="https://www.instagram.com/bluestoneconsultoriadoes/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-gold transition-colors"
@@ -53,7 +53,7 @@ const Footer = () => {
                 @bluestoneconsultoriadoes
               </a>
               <a
-                href="https://www.linkedin.com/company/bluestoneconsultoria"
+                href="https://www.linkedin.com/in/blue-stone-consultoria-undefined-0bb11935b/?skipRedirect=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-primary-foreground/60 hover:text-gold transition-colors"
