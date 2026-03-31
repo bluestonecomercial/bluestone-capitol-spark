@@ -24,7 +24,7 @@ const Index = () => {
       <HeroSection onDiagnosticOpen={openDiagnostic} />
       <ProblemSection />
       <SolutionSection />
-      <BenefitsSection />
+      <BenefitsSection onDiagnosticOpen={openDiagnostic} />
       <IncentivesSection />
       <HowItWorksSection />
       <SpecialistsSection />

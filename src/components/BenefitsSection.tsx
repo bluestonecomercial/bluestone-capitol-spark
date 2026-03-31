@@ -28,7 +28,11 @@ const benefits = [
   },
 ];
 
-const BenefitsSection = () => {
+interface BenefitsSectionProps {
+  onDiagnosticOpen: () => void;
+}
+
+const BenefitsSection = ({ onDiagnosticOpen }: BenefitsSectionProps) => {
   return (
     <section id="beneficios" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
@@ -69,14 +73,20 @@ const BenefitsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 * i }}
-              className="bg-card rounded-2xl p-7 shadow-card border border-border text-center group hover:shadow-elevated transition-shadow"
+              className="bg-card rounded-2xl p-7 shadow-card border border-border text-center group hover:shadow-elevated transition-shadow flex flex-col"
             >
               <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-accent/20 transition-colors">
                 <b.icon className="text-accent" size={26} />
               </div>
               <p className="font-heading text-2xl font-bold text-accent mb-1">{b.metric}</p>
               <h3 className="font-heading font-semibold text-foreground mb-2">{b.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">{b.desc}</p>
+              <button
+                onClick={onDiagnosticOpen}
+                className="mt-auto bg-gradient-gold text-foreground font-semibold text-xs px-4 py-2 rounded-lg hover:opacity-90 transition-opacity active:scale-[0.97]"
+              >
+                Quero esse resultado
+              </button>
             </motion.div>
           ))}
         </div>
