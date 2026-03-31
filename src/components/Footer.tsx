@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 rounded bg-gradient-accent" />
+              <img src="/favicon.png" alt="Bluestone" className="w-7 h-7 rounded object-contain" />
               <span className="font-heading text-lg font-bold text-primary-foreground tracking-tight">
                 Bluestone Consultoria
               </span>
