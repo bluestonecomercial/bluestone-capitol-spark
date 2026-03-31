@@ -34,7 +34,7 @@ const Footer = () => {
               </p>
               <p className="flex items-center gap-2">
                 <Mail size={14} />
-                contato@bluestoneconsultoria.com.br
+                bluestone.comercial@gmail.com
               </p>
             </div>
           </div>
