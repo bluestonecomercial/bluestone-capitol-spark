@@ -35,7 +35,7 @@ const Header = ({ onDiagnosticOpen }: HeaderProps) => {
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
         <a href="#" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-gradient-accent" />
+          <img src="/favicon.png" alt="Bluestone" className="w-8 h-8 rounded object-contain" />
           <span className={`font-heading text-xl font-bold tracking-tight transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>
             Bluestone
           </span>
