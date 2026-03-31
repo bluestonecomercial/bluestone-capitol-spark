@@ -67,7 +67,7 @@ const CtaSection = ({ onDiagnosticOpen }: CtaSectionProps) => {
               <Phone size={14} /> +55 (27) 9 9291-5203
             </span>
             <span className="flex items-center gap-2">
-              <Mail size={14} /> contato@bluestoneconsultoria.com.br
+              <Mail size={14} /> bluestone.comercial@gmail.com
             </span>
           </motion.div>
         </div>
