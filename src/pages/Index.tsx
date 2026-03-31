@@ -12,6 +12,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import DiagnosticModal from "@/components/DiagnosticModal";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   const [diagnosticOpen, setDiagnosticOpen] = useState(false);
