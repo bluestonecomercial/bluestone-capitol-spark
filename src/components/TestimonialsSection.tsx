@@ -82,11 +82,27 @@ const TestimonialsSection = () => {
           transition={{ delay: 0.4 }}
           className="mt-16 text-center"
         >
-          <p className="text-xs text-muted-foreground uppercase tracking-widest mb-6">
+          <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">
             Empresas de diversos segmentos confiam na Bluestone
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8">
-            {["Cosméticos", "Farmacêutico", "Eletrônicos", "Alimentos", "E-commerce"].map((seg) => (
+          <p className="font-heading text-lg font-semibold text-foreground mb-6">
+            Principais Segmentos
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {[
+              "Alimentos e Bebidas",
+              "Alumínio",
+              "Auto Peças",
+              "Calçados",
+              "EPI",
+              "Equipamentos Hospitalares",
+              "Máquinas e Equipamentos Pesados",
+              "Material de Construção",
+              "Medicamentos Veterinários",
+              "Plástico",
+              "Sucata",
+              "Vestuário",
+            ].map((seg) => (
               <span
                 key={seg}
                 className="px-5 py-2.5 bg-muted rounded-lg text-sm font-medium text-muted-foreground border border-border"
