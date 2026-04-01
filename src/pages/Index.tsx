@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
+import SeoIntroSection from "@/components/SeoIntroSection";
 import SolutionSection from "@/components/SolutionSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import IncentivesSection from "@/components/IncentivesSection";
