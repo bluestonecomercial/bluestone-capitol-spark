@@ -6,7 +6,7 @@ const solutions = [
   {
     icon: Shield,
     title: "Estruturação Fiscal no ES",
-    desc: "Utilizamos os incentivos de ICMS do Espírito Santo para criar uma estrutura tributária legal, segura e altamente vantajosa.",
+    desc: "Utilizamos os incentivos fiscais no Espírito Santo para criar uma estrutura tributária legal, segura e com máxima eficiência tributária.",
   },
   {
     icon: Truck,
@@ -56,7 +56,7 @@ const SolutionSection = () => {
               transition={{ delay: 0.2 }}
               className="text-primary-foreground/70 text-lg leading-relaxed mb-10"
             >
-              A Bluestone estrutura toda a operação — do incentivo fiscal à logística — para que sua empresa opere com a menor carga tributária possível, de forma legal e sustentável.
+              A Bluestone estrutura toda a operação — dos incentivos fiscais à logística — para que sua empresa reduza o ICMS ao máximo, de forma legal e sustentável no Espírito Santo.
             </motion.p>
 
             <div className="space-y-5">

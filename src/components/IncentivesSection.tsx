@@ -46,7 +46,7 @@ const IncentivesSection = () => {
             transition={{ delay: 0.1 }}
             className="font-heading text-3xl md:text-4xl font-bold mt-3 mb-4"
           >
-            Incentivos que tornam sua operação mais competitiva
+            Incentivos fiscais que tornam sua operação mais competitiva no Espírito Santo
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ const IncentivesSection = () => {
             transition={{ delay: 0.2 }}
             className="text-primary-foreground/70 text-lg"
           >
-            O Espírito Santo oferece programas fiscais robustos para empresas que operam com importação e distribuição. Conheça os principais:
+            O Espírito Santo oferece benefícios fiscais robustos para redução de ICMS em empresas que operam com importação e distribuição interestadual. Conheça os principais:
           </motion.p>
         </div>
 

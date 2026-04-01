@@ -6,7 +6,7 @@ const problems = [
   {
     icon: DollarSign,
     title: "Carga tributária elevada",
-    desc: "ICMS alto nas operações de importação e distribuição corroendo suas margens e dificultando a competitividade.",
+    desc: "ICMS elevado nas operações interestaduais de importação e distribuição corroendo suas margens e dificultando a competitividade.",
   },
   {
     icon: AlertTriangle,
