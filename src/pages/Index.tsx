@@ -35,7 +35,7 @@ const Index = () => {
       <CtaSection onDiagnosticOpen={openDiagnostic} />
       <Footer />
       <DiagnosticModal open={diagnosticOpen} onOpenChange={setDiagnosticOpen} />
-      <WhatsAppButton />
+      
     </div>
   );
 };

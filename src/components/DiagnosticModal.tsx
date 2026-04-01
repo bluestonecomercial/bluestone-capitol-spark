@@ -241,6 +241,8 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
             Você será direcionado ao WhatsApp para conversar com nosso especialista.
           </p>
         </div>
+        </>
+        )}
       </DialogContent>
     </Dialog>
   );
