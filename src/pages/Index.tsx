@@ -23,6 +23,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Header onDiagnosticOpen={openDiagnostic} />
       <HeroSection onDiagnosticOpen={openDiagnostic} />
+      <SeoIntroSection />
       <ProblemSection />
       <SolutionSection />
       <BenefitsSection onDiagnosticOpen={openDiagnostic} />
