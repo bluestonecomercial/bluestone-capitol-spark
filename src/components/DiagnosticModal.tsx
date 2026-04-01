@@ -116,10 +116,10 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     };
 
     emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
+      "service_qgv5qpq",
+      "ncsmcu3",
       templateParams,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY"
+      "_OGwBeDRRiCyReUMc"
     ).catch((err) => console.error("EmailJS error:", err));
   };
 
