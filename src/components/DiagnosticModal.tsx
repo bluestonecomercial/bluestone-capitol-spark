@@ -96,6 +96,10 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     });
 
     setSubmitted(true);
+
+    // Dispara evento no Google Tag Manager
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: 'form_submit' });
   };
 
   const isUnanswered = (id: string) =>
