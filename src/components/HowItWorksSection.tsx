@@ -6,7 +6,7 @@ const steps = [
     icon: Search,
     step: "01",
     title: "Diagnóstico",
-    desc: "Analisamos sua operação atual — tributária, logística e operacional — para identificar oportunidades de economia.",
+    desc: "Analisamos sua operação atual — tributária, logística e operacional — para identificar oportunidades de redução de ICMS com incentivos fiscais.",
   },
   {
     icon: PenTool,

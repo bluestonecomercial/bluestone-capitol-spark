@@ -44,8 +44,8 @@ const HeroSection = ({ onDiagnosticOpen }: HeroSectionProps) => {
             className="text-lg md:text-xl text-primary-foreground/75 mb-10 max-w-2xl leading-relaxed"
           >
             Estruturamos operações de importação, distribuição e e-commerce com
-            incentivos fiscais legais do ES — gerando economia real e vantagem
-            competitiva sustentável para a sua empresa.
+            incentivos fiscais no Espírito Santo — gerando redução de ICMS real e eficiência
+            tributária sustentável para operações interestaduais da sua empresa.
           </motion.p>
 
           <motion.div

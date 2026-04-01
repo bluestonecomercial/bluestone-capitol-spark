@@ -55,7 +55,7 @@ const IncentivesSection = () => {
             transition={{ delay: 0.2 }}
             className="text-primary-foreground/70 text-lg"
           >
-            O Espírito Santo oferece programas fiscais robustos para empresas que operam com importação e distribuição. Conheça os principais:
+            O Espírito Santo oferece benefícios fiscais robustos para redução de ICMS em empresas que operam com importação e distribuição interestadual. Conheça os principais:
           </motion.p>
         </div>
 
