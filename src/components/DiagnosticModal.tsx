@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
@@ -102,6 +103,24 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({ event: 'form_submit' });
     }
+
+    // Envia e-mail via EmailJS
+    const templateParams = {
+      to_email: "bluestone.comercial@gmail.com",
+      message: lines.join("\n"),
+      icms_compra: getAnswerText(questions[0]),
+      icms_venda: getAnswerText(questions[1]),
+      st: getAnswerText(questions[2]),
+      tipo_cliente: getAnswerText(questions[3]),
+      faturamento: getAnswerText(questions[4]),
+    };
+
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID",
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
+      templateParams,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY"
+    ).catch((err) => console.error("EmailJS error:", err));
   };
 
   const isUnanswered = (id: string) =>
