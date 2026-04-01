@@ -6,7 +6,7 @@ const solutions = [
   {
     icon: Shield,
     title: "Estruturação Fiscal no ES",
-    desc: "Utilizamos os incentivos de ICMS do Espírito Santo para criar uma estrutura tributária legal, segura e altamente vantajosa.",
+    desc: "Utilizamos os incentivos fiscais no Espírito Santo para criar uma estrutura tributária legal, segura e com máxima eficiência tributária.",
   },
   {
     icon: Truck,
