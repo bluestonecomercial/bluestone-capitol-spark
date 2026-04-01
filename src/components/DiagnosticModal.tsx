@@ -50,6 +50,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [otherValues, setOtherValues] = useState<Record<string, string>>({});
   const [showValidation, setShowValidation] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const selectAnswer = (questionId: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: value }));
