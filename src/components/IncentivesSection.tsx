@@ -46,7 +46,7 @@ const IncentivesSection = () => {
             transition={{ delay: 0.1 }}
             className="font-heading text-3xl md:text-4xl font-bold mt-3 mb-4"
           >
-            Incentivos que tornam sua operação mais competitiva
+            Incentivos fiscais que tornam sua operação mais competitiva no Espírito Santo
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
