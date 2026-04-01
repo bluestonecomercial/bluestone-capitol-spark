@@ -95,13 +95,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
       return `- ${shortLabel}: ${getAnswerText(q)}`;
     });
 
-    const message = `Olá! Gostaria de receber minha planilha de pré-viabilidade personalizada.\n\n📊 Respostas:\n${lines.join("\n")}`;
-    const url = `https://wa.me/5527992915203?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-    onOpenChange(false);
-    setAnswers({});
-    setOtherValues({});
-    setShowValidation(false);
+    setSubmitted(true);
   };
 
   const isUnanswered = (id: string) =>
