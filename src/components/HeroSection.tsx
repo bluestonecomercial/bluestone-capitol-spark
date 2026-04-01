@@ -33,8 +33,8 @@ const HeroSection = ({ onDiagnosticOpen }: HeroSectionProps) => {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6"
           >
-            Reduza até 90% da carga de ICMS e transforme o Espírito Santo na{" "}
-            <span className="text-gold">base estratégica</span> da sua operação
+            Reduza o ICMS da sua empresa com{" "}
+            <span className="text-gold">incentivos fiscais</span> no Espírito Santo
           </motion.h1>
 
           <motion.p
