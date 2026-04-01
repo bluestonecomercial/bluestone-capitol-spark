@@ -50,6 +50,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [otherValues, setOtherValues] = useState<Record<string, string>>({});
   const [showValidation, setShowValidation] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const selectAnswer = (questionId: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: value }));
@@ -94,21 +95,46 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
       return `- ${shortLabel}: ${getAnswerText(q)}`;
     });
 
-    const message = `Olá! Gostaria de receber minha planilha de pré-viabilidade personalizada.\n\n📊 Respostas:\n${lines.join("\n")}`;
-    const url = `https://wa.me/5527992915203?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-    onOpenChange(false);
-    setAnswers({});
-    setOtherValues({});
-    setShowValidation(false);
+    setSubmitted(true);
   };
 
   const isUnanswered = (id: string) =>
     showValidation && (!answers[id] || (answers[id] === "__other__" && !otherValues[id]?.trim()));
 
+  const handleClose = (val: boolean) => {
+    if (!val) {
+      setSubmitted(false);
+      setAnswers({});
+      setOtherValues({});
+      setShowValidation(false);
+    }
+    onOpenChange(val);
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-[hsl(var(--navy))] border-gold/20 p-0 gap-0">
+        {submitted ? (
+          <div className="p-10 flex flex-col items-center text-center gap-6">
+            <div className="w-16 h-16 rounded-full bg-gradient-gold flex items-center justify-center">
+              <CheckCircle2 size={32} className="text-foreground" />
+            </div>
+            <h2 className="font-heading text-xl md:text-2xl font-bold text-primary-foreground leading-snug">
+              Obrigado! Recebemos suas respostas.
+            </h2>
+            <p className="text-primary-foreground/70 text-base max-w-md">
+              Nosso especialista entrará em contato em breve com sua planilha de pré-viabilidade personalizada.
+            </p>
+            <button
+              type="button"
+              onClick={() => handleClose(false)}
+              className="mt-2 px-8 py-3 rounded-lg bg-gradient-gold text-foreground font-bold hover:opacity-90 transition-opacity"
+            >
+              Fechar
+            </button>
+          </div>
+        ) : (
+        <>
         {/* Header */}
         <div className="p-6 pb-4 border-b border-gold/10">
           <div className="flex items-center gap-2 mb-2">
@@ -215,6 +241,8 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
             Você será direcionado ao WhatsApp para conversar com nosso especialista.
           </p>
         </div>
+        </>
+        )}
       </DialogContent>
     </Dialog>
   );
