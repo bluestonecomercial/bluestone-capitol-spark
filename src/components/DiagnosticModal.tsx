@@ -115,12 +115,17 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
       faturamento: getAnswerText(questions[4]),
     };
 
+    console.log("📧 EmailJS - Enviando com params:", templateParams);
     emailjs.send(
       "service_l58lt7h",
       "template_0bybmpi",
       templateParams,
       "_OGwBeDRRiCyReUMc"
-    ).catch((err) => console.error("EmailJS error:", err));
+    ).then((result) => {
+      console.log("✅ EmailJS - Sucesso:", result.status, result.text);
+    }).catch((err) => {
+      console.error("❌ EmailJS - Erro:", err);
+    });
   };
 
   const isUnanswered = (id: string) =>
