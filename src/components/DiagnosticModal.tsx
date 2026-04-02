@@ -117,7 +117,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
 
     emailjs.send(
       "service_l58lt7h",
-      "ncsmcu3",
+      "template_0bybmpi",
       templateParams,
       "_OGwBeDRRiCyReUMc"
     ).catch((err) => console.error("EmailJS error:", err));
