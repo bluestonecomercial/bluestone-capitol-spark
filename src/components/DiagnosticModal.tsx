@@ -116,7 +116,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     };
 
     emailjs.send(
-      "service_qgv5qpq",
+      "service_l58lt7h",
       "ncsmcu3",
       templateParams,
       "_OGwBeDRRiCyReUMc"
