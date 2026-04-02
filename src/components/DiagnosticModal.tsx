@@ -115,17 +115,10 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
       faturamento: getAnswerText(questions[4]),
     };
 
-    console.log("📧 EmailJS - Enviando com params:", templateParams);
-    emailjs.send(
-      "service_l58lt7h",
-      "template_0bybmpi",
-      templateParams,
-      "_OGwBeDRRiCyReUMc"
-    ).then((result) => {
-      console.log("✅ EmailJS - Sucesso:", result.status, result.text);
-    }).catch((err) => {
-      console.error("❌ EmailJS - Erro:", err);
-    });
+    emailjs.init("_OGwBeDRRiCyReUMc");
+    emailjs.send("service_l58lt7h", "ncsmcu3", templateParams)
+      .then(() => console.log("Enviado com sucesso"))
+      .catch((err) => console.error("Erro:", err));
   };
 
   const isUnanswered = (id: string) =>
