@@ -141,6 +141,8 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
   const handleClose = (val: boolean) => {
     if (!val) {
       setSubmitted(false);
+      setNome("");
+      setTelefone("");
       setAnswers({});
       setOtherValues({});
       setShowValidation(false);
