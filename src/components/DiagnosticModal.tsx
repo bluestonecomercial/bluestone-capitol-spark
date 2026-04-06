@@ -130,7 +130,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     };
 
     emailjs.init("_OGwBeDRRiCyReUMc");
-    emailjs.send("service_l58lt7h", "ncsmcu3", templateParams)
+    emailjs.send("service_l58lt7h", "template_0bybmpi", templateParams)
       .then(() => console.log("Enviado com sucesso"))
       .catch((err) => console.error("Erro:", err));
   };
