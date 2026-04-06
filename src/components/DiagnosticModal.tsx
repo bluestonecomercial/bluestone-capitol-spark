@@ -47,7 +47,16 @@ const questions: Question[] = [
   },
 ];
 
+const formatPhone = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+};
+
 const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
+  const [nome, setNome] = useState("");
+  const [telefone, setTelefone] = useState("");
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [otherValues, setOtherValues] = useState<Record<string, string>>({});
   const [showValidation, setShowValidation] = useState(false);
