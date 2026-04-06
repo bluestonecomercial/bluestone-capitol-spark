@@ -192,6 +192,42 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
           </p>
         </div>
 
+        {/* Contact fields */}
+        <div className="px-6 pt-6 space-y-4">
+          <div>
+            <label className={`block text-sm font-semibold mb-2 ${
+              showValidation && !nome.trim() ? "text-red-400" : "text-primary-foreground/90"
+            }`}>
+              Nome completo *
+              {showValidation && !nome.trim() && (
+                <span className="text-red-400 text-xs ml-2">— obrigatório</span>
+              )}
+            </label>
+            <Input
+              placeholder="Seu nome completo"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              className="bg-primary-foreground/5 border-primary-foreground/15 text-primary-foreground placeholder:text-primary-foreground/30 focus-visible:ring-gold/50"
+            />
+          </div>
+          <div>
+            <label className={`block text-sm font-semibold mb-2 ${
+              showValidation && telefone.replace(/\D/g, "").length < 10 ? "text-red-400" : "text-primary-foreground/90"
+            }`}>
+              Telefone *
+              {showValidation && telefone.replace(/\D/g, "").length < 10 && (
+                <span className="text-red-400 text-xs ml-2">— obrigatório (mín. 10 dígitos)</span>
+              )}
+            </label>
+            <Input
+              placeholder="(27) 99999-9999"
+              value={telefone}
+              onChange={(e) => setTelefone(formatPhone(e.target.value))}
+              className="bg-primary-foreground/5 border-primary-foreground/15 text-primary-foreground placeholder:text-primary-foreground/30 focus-visible:ring-gold/50"
+            />
+          </div>
+        </div>
+
         {/* Questions */}
         <div className="p-6 space-y-6">
           <AnimatePresence mode="sync">
