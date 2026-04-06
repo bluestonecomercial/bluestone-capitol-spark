@@ -47,7 +47,16 @@ const questions: Question[] = [
   },
 ];
 
+const formatPhone = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+};
+
 const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
+  const [nome, setNome] = useState("");
+  const [telefone, setTelefone] = useState("");
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [otherValues, setOtherValues] = useState<Record<string, string>>({});
   const [showValidation, setShowValidation] = useState(false);
@@ -64,7 +73,10 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     }
   };
 
-  const allAnswered = questions.every((q) => {
+  const phoneDigits = telefone.replace(/\D/g, "");
+  const contactFilled = nome.trim().length > 0 && phoneDigits.length >= 10;
+
+  const allAnswered = contactFilled && questions.every((q) => {
     const answer = answers[q.id];
     if (!answer) return false;
     if (answer === "__other__" && !otherValues[q.id]?.trim()) return false;
@@ -107,6 +119,8 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     // Envia e-mail via EmailJS
     const templateParams = {
       to_email: "bluestone.comercial@gmail.com",
+      nome: nome.trim(),
+      telefone,
       message: lines.join("\n"),
       icms_compra: getAnswerText(questions[0]),
       icms_venda: getAnswerText(questions[1]),
@@ -127,6 +141,8 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
   const handleClose = (val: boolean) => {
     if (!val) {
       setSubmitted(false);
+      setNome("");
+      setTelefone("");
       setAnswers({});
       setOtherValues({});
       setShowValidation(false);
@@ -174,6 +190,42 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
           <p className="text-primary-foreground/50 text-sm mt-2">
             Nosso especialista irá analisar sua operação e desenhar um cenário sob medida.
           </p>
+        </div>
+
+        {/* Contact fields */}
+        <div className="px-6 pt-6 space-y-4">
+          <div>
+            <label className={`block text-sm font-semibold mb-2 ${
+              showValidation && !nome.trim() ? "text-red-400" : "text-primary-foreground/90"
+            }`}>
+              Nome completo *
+              {showValidation && !nome.trim() && (
+                <span className="text-red-400 text-xs ml-2">— obrigatório</span>
+              )}
+            </label>
+            <Input
+              placeholder="Seu nome completo"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              className="bg-primary-foreground/5 border-primary-foreground/15 text-primary-foreground placeholder:text-primary-foreground/30 focus-visible:ring-gold/50"
+            />
+          </div>
+          <div>
+            <label className={`block text-sm font-semibold mb-2 ${
+              showValidation && telefone.replace(/\D/g, "").length < 10 ? "text-red-400" : "text-primary-foreground/90"
+            }`}>
+              Telefone *
+              {showValidation && telefone.replace(/\D/g, "").length < 10 && (
+                <span className="text-red-400 text-xs ml-2">— obrigatório (mín. 10 dígitos)</span>
+              )}
+            </label>
+            <Input
+              placeholder="(27) 99999-9999"
+              value={telefone}
+              onChange={(e) => setTelefone(formatPhone(e.target.value))}
+              className="bg-primary-foreground/5 border-primary-foreground/15 text-primary-foreground placeholder:text-primary-foreground/30 focus-visible:ring-gold/50"
+            />
+          </div>
         </div>
 
         {/* Questions */}
