@@ -119,6 +119,8 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     // Envia e-mail via EmailJS
     const templateParams = {
       to_email: "bluestone.comercial@gmail.com",
+      nome: nome.trim(),
+      telefone,
       message: lines.join("\n"),
       icms_compra: getAnswerText(questions[0]),
       icms_venda: getAnswerText(questions[1]),
