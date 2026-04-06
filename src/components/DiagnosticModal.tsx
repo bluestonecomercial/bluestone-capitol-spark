@@ -73,7 +73,10 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     }
   };
 
-  const allAnswered = questions.every((q) => {
+  const phoneDigits = telefone.replace(/\D/g, "");
+  const contactFilled = nome.trim().length > 0 && phoneDigits.length >= 10;
+
+  const allAnswered = contactFilled && questions.every((q) => {
     const answer = answers[q.id];
     if (!answer) return false;
     if (answer === "__other__" && !otherValues[q.id]?.trim()) return false;
