@@ -131,12 +131,12 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     emailjs.send("service_l58lt7h", "template_0bybmpi", templateParams)
       .then(() => {
         console.log("Enviado com sucesso");
-        if (typeof (window as any).gtag === 'function') {
-          (window as any).gtag('event', 'form_submit', {
-            event_category: 'lead',
-            event_label: 'formulario_contato'
-          });
-        }
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: 'form_submit',
+          event_category: 'lead',
+          event_label: 'formulario_contato'
+        });
       })
       .catch((err) => console.error("Erro:", err));
   };
