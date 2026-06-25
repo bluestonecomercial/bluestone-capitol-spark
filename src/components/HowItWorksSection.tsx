@@ -61,7 +61,7 @@ const HowItWorksSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-4 gap-8 items-stretch">
           {steps.map((s, i) => (
             <motion.div
               key={s.step}
