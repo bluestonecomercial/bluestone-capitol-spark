@@ -69,14 +69,14 @@ const HowItWorksSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15 * i }}
-              className="relative"
+              className="relative h-full"
             >
               {/* Connector line */}
               {i < steps.length - 1 && (
                 <div className="hidden md:block absolute top-8 left-[calc(50%+32px)] right-[calc(-50%+32px)] h-[2px] bg-border" />
               )}
 
-              <div className="relative bg-card rounded-2xl p-7 shadow-card border border-border text-center">
+              <div className="relative bg-card rounded-2xl p-7 shadow-card border border-border text-center h-full flex flex-col">
                 <div className="w-16 h-16 rounded-full bg-gradient-accent flex items-center justify-center mx-auto mb-5">
                   <s.icon className="text-accent-foreground" size={28} />
                 </div>
