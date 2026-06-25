@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
 import thiagoImg from "@/assets/thiago-santos.png";
-import carlosImg from "@/assets/carlos-martins.png";
 import fabianaImg from "@/assets/fabiana-cecim.png";
 
 const specialists = [
@@ -10,12 +9,6 @@ const specialists = [
     role: "CEO & Founder",
     image: thiagoImg,
     bio: "Executivo com mais de 20 anos de experiência em estratégia comercial, relacionamento institucional e desenvolvimento de negócios. Reconhecido pela estruturação e atração de mais de 300 empresas para o Espírito Santo, com forte domínio em incentivos fiscais de ICMS e articulação entre setor público e privado. Atualmente também atua como Presidente do LIDE Espírito Santo.",
-  },
-  {
-    name: "Carlos Eduardo Martins",
-    role: "Head Comercial",
-    image: carlosImg,
-    bio: "Liderança estratégica na atração de empresas e estruturação de operações no Espírito Santo. Atua diretamente na construção de parcerias, desenvolvimento de mercado e desenho de soluções que aumentam a competitividade tributária e logística dos clientes.",
   },
   {
     name: "Fabiana Cecim",
@@ -58,7 +51,7 @@ const SpecialistsSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {specialists.map((s, i) => (
             <motion.div
               key={s.name}
