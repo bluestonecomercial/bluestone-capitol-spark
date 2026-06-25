@@ -51,7 +51,7 @@ const SpecialistsSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {specialists.map((s, i) => (
             <motion.div
               key={s.name}
@@ -61,13 +61,14 @@ const SpecialistsSection = () => {
               transition={{ delay: 0.15 * i }}
               className="bg-card rounded-2xl overflow-hidden shadow-card border border-border group hover:shadow-elevated transition-shadow"
             >
-              <div className="aspect-[4/4] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={s.image}
                   alt={s.name}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
+
               <div className="p-7">
                 <h3 className="font-heading text-xl font-bold text-foreground">{s.name}</h3>
                 <p className="text-accent font-semibold text-sm mb-3">{s.role}</p>
