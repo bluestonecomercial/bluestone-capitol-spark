@@ -7,7 +7,10 @@ interface CtaBarProps {
 }
 
 const WHATSAPP_URL =
-  "https://wa.me/5527992915203?text=Olá! Gostaria de falar com um especialista da Bluestone Consultoria.";
+  "https://wa.me/5527992915203?text=" +
+  encodeURIComponent(
+    "Vim do site da Bluestone. Gostaria de saber mais sobre os serviços de consultoria"
+  );
 
 const CtaBar = ({ label, subtitle }: CtaBarProps) => {
   return (
