@@ -29,9 +29,11 @@ const Index = () => {
       <ProblemSection />
       <SolutionSection />
       <BenefitsSection onDiagnosticOpen={openDiagnostic} />
+      <CtaBar label="Fale com a Bluestone" subtitle="Tire suas dúvidas diretamente com nosso time comercial." />
       <IncentivesSection />
       <HowItWorksSection />
       <SpecialistsSection />
+      <CtaBar label="Fale com um de nossos especialistas" subtitle="Atendimento direto com quem estrutura operações tributárias no Espírito Santo." />
       <AuthoritySection />
       <TestimonialsSection />
       <CtaSection onDiagnosticOpen={openDiagnostic} />
