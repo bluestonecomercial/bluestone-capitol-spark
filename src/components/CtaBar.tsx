@@ -34,7 +34,7 @@ const CtaBar = ({ label, subtitle }: CtaBarProps) => {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-7 py-3.5 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.97] shadow-lg"
+            className="inline-flex items-center gap-2 border-2 border-gold text-gold font-semibold px-7 py-3.5 rounded-lg text-base hover:bg-gold hover:text-foreground transition-colors active:scale-[0.97] shadow-lg"
           >
             <MessageCircle size={20} fill="white" />
             {label}
