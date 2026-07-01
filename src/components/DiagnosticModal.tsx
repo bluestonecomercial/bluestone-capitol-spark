@@ -310,6 +310,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
         {/* Submit */}
         <div className="p-6 pt-2 border-t border-gold/10">
           <button
+            id="btn-especialista"
             type="button"
             onClick={handleSubmit}
             className="w-full inline-flex items-center justify-center gap-3 bg-gradient-gold text-foreground font-bold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.98]"
