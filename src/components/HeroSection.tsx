@@ -62,12 +62,12 @@ const HeroSection = ({ onDiagnosticOpen }: HeroSectionProps) => {
               <ArrowRight size={18} />
             </button>
             <a
-              href="https://wa.me/5527992915203?text=Olá! Gostaria de falar com um especialista da Bluestone Consultoria."
+              href={"https://wa.me/5527992915203?text=" + encodeURIComponent("Vim do site da Bluestone. Gostaria de saber mais sobre os serviços de consultoria")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.97] shadow-lg"
+              className="inline-flex items-center justify-center gap-2 border-2 border-gold text-gold font-semibold px-8 py-4 rounded-lg text-base hover:bg-gold hover:text-foreground transition-colors active:scale-[0.97] shadow-lg"
             >
-              <MessageCircle size={18} fill="white" />
+              <MessageCircle size={18} />
               Fale com um especialista
             </a>
           </motion.div>
