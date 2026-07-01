@@ -61,7 +61,7 @@ const CtaSection = ({ onDiagnosticOpen }: CtaSectionProps) => {
               className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.97]"
             >
               <MessageCircle size={18} fill="white" />
-              Falar no WhatsApp
+              Fale com um especialista
             </a>
           </motion.div>
 

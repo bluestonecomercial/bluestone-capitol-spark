@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, MessageCircle } from "lucide-react";
-
-const WHATSAPP_URL = "https://wa.me/5527992915203?text=Olá! Gostaria de saber mais sobre os serviços da Bluestone Consultoria.";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Sobre", href: "#problema" },
@@ -54,16 +52,6 @@ const Header = ({ onDiagnosticOpen }: HeaderProps) => {
               {item.label}
             </a>
           ))}
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#25D366] hover:opacity-80 transition-opacity"
-            aria-label="Fale conosco no WhatsApp"
-          >
-            <MessageCircle size={18} fill="currentColor" className="text-[#25D366]" />
-            WhatsApp
-          </a>
           <button
             onClick={onDiagnosticOpen}
             className="bg-gradient-gold text-foreground font-semibold text-sm px-5 py-2.5 rounded-lg hover:opacity-90 transition-opacity active:scale-[0.97]"
@@ -107,15 +95,6 @@ const Header = ({ onDiagnosticOpen }: HeaderProps) => {
           >
             Diagnóstico Gratuito
           </button>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMenuOpen(false)}
-            className="mt-2 flex items-center justify-center gap-2 w-full bg-[#25D366] text-white font-semibold text-sm px-5 py-2.5 rounded-lg"
-          >
-            <MessageCircle size={18} fill="white" /> WhatsApp
-          </a>
         </motion.div>
       )}
     </motion.header>

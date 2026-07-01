@@ -33,7 +33,7 @@ const Footer = () => {
                 +55 (27) 9 9291-5203
               </a>
               <a href="https://wa.me/5527992915203?text=Olá! Gostaria de saber mais sobre os serviços da Bluestone Consultoria." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-1 bg-[#25D366] text-white font-semibold text-sm px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
-                <MessageCircle size={16} fill="white" /> Falar no WhatsApp
+                <MessageCircle size={16} fill="white" /> Fale com um especialista
               </a>
               <p className="flex items-center gap-2">
                 <Mail size={14} />
