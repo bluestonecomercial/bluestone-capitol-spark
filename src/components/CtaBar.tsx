@@ -36,7 +36,7 @@ const CtaBar = ({ label, subtitle }: CtaBarProps) => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border-2 border-gold text-gold font-semibold px-7 py-3.5 rounded-lg text-base hover:bg-gold hover:text-foreground transition-colors active:scale-[0.97] shadow-lg"
           >
-            <MessageCircle size={20} fill="white" />
+            <MessageCircle size={20} />
             {label}
             <ArrowRight size={18} />
           </a>
