@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -28,10 +28,13 @@ const Footer = () => {
                 Praia do Canto — Vitória/ES<br />
                 CEP: 29.055-970
               </p>
-              <p className="flex items-center gap-2">
+              <a href="https://wa.me/5527992915203" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-gold transition-colors">
                 <Phone size={14} />
                 +55 (27) 9 9291-5203
-              </p>
+              </a>
+              <a href="https://wa.me/5527992915203?text=Olá! Gostaria de saber mais sobre os serviços da Bluestone Consultoria." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-1 bg-[#25D366] text-white font-semibold text-sm px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
+                <MessageCircle size={16} fill="white" /> Falar no WhatsApp
+              </a>
               <p className="flex items-center gap-2">
                 <Mail size={14} />
                 bluestone.comercial@gmail.com

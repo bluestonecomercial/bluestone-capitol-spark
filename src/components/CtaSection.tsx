@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Phone, Mail } from "lucide-react";
+import { ArrowRight, Phone, Mail, MessageCircle } from "lucide-react";
 
 interface CtaSectionProps {
   onDiagnosticOpen: () => void;
@@ -54,6 +54,15 @@ const CtaSection = ({ onDiagnosticOpen }: CtaSectionProps) => {
               Solicitar Diagnóstico Gratuito
               <ArrowRight size={18} />
             </button>
+            <a
+              href="https://wa.me/5527992915203?text=Olá! Gostaria de saber mais sobre os serviços da Bluestone Consultoria."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.97]"
+            >
+              <MessageCircle size={18} fill="white" />
+              Falar no WhatsApp
+            </a>
           </motion.div>
 
           <motion.div
@@ -63,9 +72,9 @@ const CtaSection = ({ onDiagnosticOpen }: CtaSectionProps) => {
             transition={{ delay: 0.5 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-primary-foreground/60"
           >
-            <span className="flex items-center gap-2">
+            <a href="https://wa.me/5527992915203" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-gold transition-colors">
               <Phone size={14} /> +55 (27) 9 9291-5203
-            </span>
+            </a>
             <span className="flex items-center gap-2">
               <Mail size={14} /> bluestone.comercial@gmail.com
             </span>
