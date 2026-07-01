@@ -54,6 +54,16 @@ const Header = ({ onDiagnosticOpen }: HeaderProps) => {
               {item.label}
             </a>
           ))}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#25D366] hover:opacity-80 transition-opacity"
+            aria-label="Fale conosco no WhatsApp"
+          >
+            <MessageCircle size={18} fill="currentColor" className="text-[#25D366]" />
+            WhatsApp
+          </a>
           <button
             onClick={onDiagnosticOpen}
             className="bg-gradient-gold text-foreground font-semibold text-sm px-5 py-2.5 rounded-lg hover:opacity-90 transition-opacity active:scale-[0.97]"
