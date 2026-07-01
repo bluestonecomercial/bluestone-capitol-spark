@@ -72,9 +72,9 @@ const CtaSection = ({ onDiagnosticOpen }: CtaSectionProps) => {
             transition={{ delay: 0.5 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-primary-foreground/60"
           >
-            <span className="flex items-center gap-2">
+            <a href="https://wa.me/5527992915203" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-gold transition-colors">
               <Phone size={14} /> +55 (27) 9 9291-5203
-            </span>
+            </a>
             <span className="flex items-center gap-2">
               <Mail size={14} /> bluestone.comercial@gmail.com
             </span>
