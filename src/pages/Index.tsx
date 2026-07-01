@@ -14,6 +14,7 @@ import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import DiagnosticModal from "@/components/DiagnosticModal";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CtaBar from "@/components/CtaBar";
 
 
 const Index = () => {
