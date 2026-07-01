@@ -32,8 +32,14 @@ const Footer = () => {
                 <Phone size={14} />
                 +55 (27) 9 9291-5203
               </a>
-              <a href="https://wa.me/5527992915203?text=Olá! Gostaria de saber mais sobre os serviços da Bluestone Consultoria." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-1 bg-[#25D366] text-white font-semibold text-sm px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
-                <MessageCircle size={16} fill="white" /> Fale com um especialista
+              <a
+                href={"https://wa.me/5527992915203?text=" + encodeURIComponent("Vim do site da Bluestone. Gostaria de saber mais sobre os serviços de consultoria")}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp Bluestone"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-primary-foreground/20 text-primary-foreground/70 hover:text-gold hover:border-gold transition-colors"
+              >
+                <MessageCircle size={16} />
               </a>
               <p className="flex items-center gap-2">
                 <Mail size={14} />
