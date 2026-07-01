@@ -16,7 +16,6 @@ import DiagnosticModal from "@/components/DiagnosticModal";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CtaBar from "@/components/CtaBar";
 
-
 const Index = () => {
   const [diagnosticOpen, setDiagnosticOpen] = useState(false);
   const openDiagnostic = () => setDiagnosticOpen(true);
@@ -33,7 +32,10 @@ const Index = () => {
       <IncentivesSection />
       <HowItWorksSection />
       <SpecialistsSection />
-      <CtaBar label="Fale com um de nossos especialistas" subtitle="Atendimento direto com quem estrutura operações tributárias no Espírito Santo." />
+      <CtaBar
+        label="Fale com um de nossos especialistas"
+        subtitle="Atendimento direto com quem estrutura operações tributárias no Espírito Santo."
+      />
       <AuthoritySection />
       <TestimonialsSection />
       <CtaSection onDiagnosticOpen={openDiagnostic} />
