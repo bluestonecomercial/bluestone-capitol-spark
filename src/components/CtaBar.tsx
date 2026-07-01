@@ -14,7 +14,7 @@ const WHATSAPP_URL =
 
 const CtaBar = ({ label, subtitle }: CtaBarProps) => {
   return (
-    <section className="bg-gradient-hero py-10">
+    <section className="bg-gradient-gold py-10">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,11 +23,11 @@ const CtaBar = ({ label, subtitle }: CtaBarProps) => {
           className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left"
         >
           <div>
-            <p className="font-heading text-xl md:text-2xl font-bold text-primary-foreground">
+            <p className="font-heading text-xl md:text-2xl font-bold text-foreground">
               {label}
             </p>
             {subtitle && (
-              <p className="text-primary-foreground/70 text-sm mt-1">{subtitle}</p>
+              <p className="text-foreground/75 text-sm mt-1">{subtitle}</p>
             )}
           </div>
           <a
