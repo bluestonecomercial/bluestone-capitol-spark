@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const WhatsAppButton = () => {
   return (
     <motion.a
-      href="https://wa.me/5527992915203?text=Olá! Gostaria de saber mais sobre os serviços da Bluestone Consultoria."
+      href={"https://wa.me/5527992915203?text=" + encodeURIComponent("Vim do site da Bluestone. Gostaria de saber mais sobre os serviços de consultoria")}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}
