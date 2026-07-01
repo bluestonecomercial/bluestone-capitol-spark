@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import heroImg from "@/assets/hero-port.jpg";
 
 interface HeroSectionProps {
