@@ -107,6 +107,15 @@ const Header = ({ onDiagnosticOpen }: HeaderProps) => {
           >
             Diagnóstico Gratuito
           </button>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
+            className="mt-2 flex items-center justify-center gap-2 w-full bg-[#25D366] text-white font-semibold text-sm px-5 py-2.5 rounded-lg"
+          >
+            <MessageCircle size={18} fill="white" /> WhatsApp
+          </a>
         </motion.div>
       )}
     </motion.header>
