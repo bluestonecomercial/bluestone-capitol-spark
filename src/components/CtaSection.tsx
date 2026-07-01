@@ -54,6 +54,15 @@ const CtaSection = ({ onDiagnosticOpen }: CtaSectionProps) => {
               Solicitar Diagnóstico Gratuito
               <ArrowRight size={18} />
             </button>
+            <a
+              href="https://wa.me/5527992915203?text=Olá! Gostaria de saber mais sobre os serviços da Bluestone Consultoria."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-semibold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.97]"
+            >
+              <MessageCircle size={18} fill="white" />
+              Falar no WhatsApp
+            </a>
           </motion.div>
 
           <motion.div
