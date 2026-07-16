@@ -44,24 +44,25 @@
       name="twitter:image"
       content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0a2bcb87-d03a-4637-906d-78d85990febd/id-preview-c4418cb9--1fbf5065-d92e-4a5b-a877-e71b44b0c763.lovable.app-1773944047921.png"
     />
+
     <script>
       document.addEventListener("click", function(event) {
+        // 1. Identifica o link
         const linkClicado = event.target.closest("a");
 
+        // 2. Verifica se é um link e se ele contém "wa.me"
         if (linkClicado && linkClicado.href && linkClicado.href.includes("wa.me")) {
-          gtag('event', 'whatsapp_click', {
-            event_category: 'engagement',
-            event_label: 'whatsapp',
-            page_location: window.location.pathname
-          });
-        }
 
-        if (linkClicado && linkClicado.id === "btn-especialista") {
-          gtag('event', 'especialista_click', {
-            event_category: 'engagement',
-            event_label: 'falar_com_especialista',
-            page_location: window.location.pathname
+          // 3. Dispara o evento apenas se for o WhatsApp
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'whatsapp_click',
+            'event_category': 'engagement',
+            'event_label': 'whatsapp',
+            'page_location': window.location.pathname
           });
+
+          console.log("Evento whatsapp_click enviado para o dataLayer!");
         }
       });
     </script>
