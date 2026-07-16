@@ -50,15 +50,15 @@
         const linkClicado = event.target.closest("a");
 
         if (linkClicado && linkClicado.href && linkClicado.href.includes("wa.me")) {
-
-          // Comando gtag direto
-          gtag('event', 'whatsapp_click', {
+          // O GTM entende este formato nativamente:
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'whatsapp_click',
             'event_category': 'engagement',
             'event_label': 'whatsapp',
             'page_location': window.location.pathname
           });
-
-          console.log("Evento enviado diretamente via gtag!");
+          console.log("Evento enviado para o dataLayer!");
         }
       });
     </script>
