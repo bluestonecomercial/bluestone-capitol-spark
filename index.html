@@ -47,22 +47,18 @@
 
     <script>
       document.addEventListener("click", function(event) {
-        // 1. Identifica o link
         const linkClicado = event.target.closest("a");
 
-        // 2. Verifica se é um link e se ele contém "wa.me"
         if (linkClicado && linkClicado.href && linkClicado.href.includes("wa.me")) {
 
-          // 3. Dispara o evento apenas se for o WhatsApp
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            'event': 'whatsapp_click',
+          // Comando gtag direto
+          gtag('event', 'whatsapp_click', {
             'event_category': 'engagement',
             'event_label': 'whatsapp',
             'page_location': window.location.pathname
           });
 
-          console.log("Evento whatsapp_click enviado para o dataLayer!");
+          console.log("Evento enviado diretamente via gtag!");
         }
       });
     </script>
