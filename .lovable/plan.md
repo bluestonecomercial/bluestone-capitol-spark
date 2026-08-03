@@ -1,236 +1,48 @@
-# Bluestone Consultoria — Brand & UI Guide
+# Prompt para outra IA — Checklist de resposta em todas as interações de contato
 
-Documento único, pronto para colar em outro projeto/mockup. Cobre identidade, tokens, tipografia, componentes, copy, CTAs e integrações.
+## O que muda
 
----
+Hoje o modal de diagnóstico (5 perguntas + nome + telefone) só abre a partir dos botões "Solicitar Diagnóstico Gratuito". Os links de WhatsApp abrem o `wa.me` diretamente.
 
-## 1. Essência de marca
+A mudança: **toda** interação de contato passa a abrir o mesmo modal/checklist antes de qualquer redirecionamento. O comportamento do botão "Solicitar Diagnóstico Gratuito" permanece exatamente como está hoje.
 
-- **Posicionamento:** Consultoria estratégica em incentivos fiscais de ICMS no Espírito Santo e logística B2B.
-- **Percepção-alvo:** McKinsey/BCG — executivo, sério, premium, corporativo.
-- **Tom de voz:** Executivo, direto, orientado a resultado financeiro. Foco em "redução de até 90% da carga de ICMS", eficiência tributária, ganho logístico.
-- **Regras de UI:** TODOS os botões/CTAs principais abrem o **Modal de Diagnóstico** (5 perguntas + nome + telefone). Nunca usar CTA que leve direto ao WhatsApp, exceto botões explicitamente rotulados "Fale com um especialista / Fale com a Bluestone" e o botão flutuante.
+Pontos de contato afetados:
+- `CtaBar` — "Fale com a Bluestone" e "Fale com um de nossos especialistas"
+- `CtaSection` — botão "Fale com um especialista" e link de telefone
+- `HeroSection` — "Fale com um especialista"
+- `Footer` — ícone circular de WhatsApp e telefone/e-mail clicáveis
+- `WhatsAppButton` — botão flutuante verde
 
----
+## Prompt (copiar e colar na outra IA)
 
-## 2. Paleta de cores (HSL — colar em `index.css`)
+```text
+Contexto: landing page React 18 + Vite + TypeScript + Tailwind CSS v3 + shadcn/ui + Framer Motion da Bluestone Consultoria (consultoria de incentivos fiscais de ICMS no Espírito Santo). Já existe o componente src/components/DiagnosticModal.tsx: um modal premium em fundo navy com destaque dourado, contendo Nome completo, Telefone (máscara BR) e 5 perguntas obrigatórias de qualificação (alíquota de ICMS de compra, alíquota de venda, ST, PF/PJ, faturamento anual), envio via EmailJS e uma tela de sucesso inline. O estado do modal vive em src/pages/Index.tsx (diagnosticOpen + openDiagnostic) e é passado por props para as seções.
 
-```css
-:root {
-  --background: 210 20% 98%;
-  --foreground: 213 32% 12%;
+Tarefa: fazer com que o checklist/modal de diagnóstico apareça em TODAS as interações de contato com a empresa, e não apenas nos botões "Solicitar Diagnóstico Gratuito".
 
-  --card: 0 0% 100%;
-  --card-foreground: 213 32% 12%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 213 32% 12%;
-
-  --primary: 213 65% 20%;              /* Navy Bluestone */
-  --primary-foreground: 210 40% 98%;
-
-  --secondary: 210 25% 93%;
-  --secondary-foreground: 213 32% 12%;
-  --muted: 210 20% 95%;
-  --muted-foreground: 213 12% 48%;
-
-  --accent: 207 90% 54%;               /* Azul destaque */
-  --accent-foreground: 0 0% 100%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 214 20% 88%;
-  --input: 214 20% 88%;
-  --ring: 213 65% 20%;
-  --radius: 0.5rem;
-
-  /* Tokens Bluestone */
-  --navy: 213 65% 20%;
-  --navy-light: 213 45% 30%;
-  --steel: 210 15% 55%;
-  --ice: 207 40% 96%;
-  --gold: 38 80% 55%;
-  --gold-light: 38 90% 65%;
-
-  --gradient-hero: linear-gradient(135deg, hsl(213 65% 12%) 0%, hsl(213 65% 20%) 50%, hsl(207 50% 30%) 100%);
-  --gradient-accent: linear-gradient(135deg, hsl(207 90% 54%) 0%, hsl(213 65% 20%) 100%);
-  --gradient-gold: linear-gradient(135deg, hsl(38 80% 55%) 0%, hsl(38 90% 65%) 100%);
-
-  --shadow-card: 0 4px 24px -4px hsl(213 65% 20% / 0.08);
-  --shadow-elevated: 0 12px 40px -8px hsl(213 65% 20% / 0.15);
-
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-}
+Regras obrigatórias:
+1. O fluxo do botão "Solicitar Diagnóstico Gratuito" permanece exatamente igual ao de hoje — não alterar o comportamento dele.
+2. Todos os outros CTAs de contato passam a abrir o mesmo DiagnosticModal em vez de navegar direto para o WhatsApp:
+   - src/components/CtaBar.tsx — "Fale com a Bluestone" e "Fale com um de nossos especialistas"
+   - src/components/CtaSection.tsx — "Fale com um especialista" e o link de telefone
+   - src/components/HeroSection.tsx — "Fale com um especialista"
+   - src/components/Footer.tsx — ícone circular de WhatsApp e contatos clicáveis
+   - src/components/WhatsAppButton.tsx — botão flutuante verde
+3. Converter esses <a href="https://wa.me/..."> em <button type="button" onClick={onDiagnosticOpen}> preservando 100% do estilo visual atual de cada um (CtaBar mantém o botão navy sólido sobre fundo dourado; CtaSection e HeroSection mantêm o outline dourado; o flutuante mantém o verde #25D366, o tamanho w-14 h-14, fixed bottom-6 right-6 z-50 e a animação spring com delay de 2s). Manter aria-label acessível em todos.
+4. Propagar a prop onDiagnosticOpen: () => void a partir de src/pages/Index.tsx para CtaBar, CtaSection, HeroSection, Footer e WhatsAppButton, usando o openDiagnostic já existente. Não criar um segundo estado de modal nem uma segunda instância de DiagnosticModal — reutilizar a única instância já renderizada no final de Index.tsx.
+5. Após o envio bem-sucedido do formulário, a tela de sucesso existente do modal deve exibir um checklist de próximos passos com checkmarks dourados (ícone CheckCircle2 do lucide-react, cor via token gold), animados em sequência com Framer Motion (initial opacity 0 / y 10, animate, delay escalonado de 0,1s), e abaixo dele um botão "Fale agora no WhatsApp" que abre https://wa.me/5527992915203 com a mensagem pré-preenchida "Vim do site da Bluestone. Gostaria de saber mais sobre os serviços de consultoria" em nova aba (target="_blank" rel="noopener noreferrer"). Itens do checklist:
+   - "Recebemos suas respostas com sucesso"
+   - "Nosso especialista analisará sua operação"
+   - "Você receberá sua planilha de pré-viabilidade personalizada"
+   - "Retorno em até 24 horas úteis"
+   Manter o botão "Fechar" já existente.
+6. Não alterar a integração EmailJS: templateParams deve continuar com exatamente as chaves nome, telefone, icms_compra, icms_venda, st, tipo_cliente, faturamento — qualquer chave extra causa erro 400. Manter o dataLayer.push({event:'form_submit'}) e o id="btn-especialista" no botão de envio.
+7. Design system: usar somente tokens semânticos do index.css (navy/primary, gold, ice, muted, foreground). Nunca hardcodar text-white, bg-black ou cores hex — exceto o verde #25D366 que é permitido apenas no botão flutuante. Tipografia: Space Grotesk nos títulos (font-heading), DM Sans no corpo (font-body). Tom de voz executivo, estilo McKinsey, focado em ganho financeiro e redução de até 90% da carga de ICMS.
+8. Rodar o typecheck ao final e garantir zero erros de TypeScript nas props novas.
 ```
 
-**Uso semântico:**
-- `navy` (primary) → fundos hero, headers dark, seção Incentivos, botões primários.
-- `gold` → destaques, CTA barras intermediárias, palavras-chave no H1, contornos de botões secundários.
-- `ice` / `muted` → fundos de seções claras alternadas.
-- `accent` (azul) → labels de categoria acima dos títulos, hover states.
-- **Verde `#25D366`** → APENAS no botão flutuante do WhatsApp. Nunca em outros CTAs.
+## Detalhes técnicos
 
----
-
-## 3. Tipografia
-
-- **Headings:** Space Grotesk 300–700
-- **Body:** DM Sans
-- Import Google Fonts:
-  ```
-  https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap
-  ```
-- Escala:
-  - H1 hero: `text-4xl md:text-5xl lg:text-6xl font-bold leading-tight`
-  - H2 seção: `text-3xl md:text-4xl font-bold` (CTA hero `md:text-5xl`)
-  - Eyebrow (label acima do título): `text-sm font-semibold uppercase tracking-widest text-accent` (ou `text-gold` em fundos dark)
-  - Body: `text-base` / `text-lg` com `text-muted-foreground`
-  - Micro copy: `text-sm text-muted-foreground`
-
----
-
-## 4. Tailwind config — extensões obrigatórias
-
-```ts
-fontFamily: { heading: ['Space Grotesk','sans-serif'], body: ['DM Sans','sans-serif'] }
-colors: { navy: {DEFAULT, light}, steel, ice, gold: {DEFAULT, light}, ... tokens semânticos padrão shadcn }
-keyframes/animation: 'fade-up' (0.6s), 'fade-in' (0.8s)
-```
-
-Utilitários custom (em `@layer utilities`):
-- `.bg-gradient-hero`, `.bg-gradient-accent`, `.bg-gradient-gold`
-- `.text-gradient-accent` (background-clip: text)
-- `.shadow-card`, `.shadow-elevated`
-
----
-
-## 5. Layout & espaçamento
-
-- Container: `container mx-auto px-4 lg:px-8`, max 1400px.
-- Seções: `py-24 lg:py-32`, alternando fundos: `bg-background` → `bg-muted` → `bg-gradient-hero` (dark) → repeat.
-- Grid de cards: `gap-6/8`, `items-stretch` + `h-full` nos cards para altura uniforme.
-- Border radius padrão: `rounded-lg` (0.5rem); cards grandes `rounded-2xl`.
-- Sombras: `shadow-card` no repouso, `shadow-elevated` no hover.
-
----
-
-## 6. Componentes-padrão
-
-### Header
-- Fixo, transparente sobre hero; ao rolar (`scrollY > 50`) vira `bg-card/95 backdrop-blur-md shadow-card`.
-- Logo `w-8 h-8` + wordmark "Bluestone" em `font-heading font-bold`.
-- Nav desktop: links `text-sm font-medium` + CTA gold "Diagnóstico Gratuito".
-- Mobile: menu hambúrguer com mesmos itens + CTA gold full-width.
-
-### Botões
-- **Primário (gold):** `bg-gradient-gold text-foreground font-semibold px-8 py-4 rounded-lg hover:opacity-90 active:scale-[0.97]`.
-- **Secundário (outline gold sobre dark):** `border-2 border-gold text-gold hover:bg-gold hover:text-foreground`.
-- **Sobre fundo dourado (CtaBar):** `bg-primary text-primary-foreground` sólido navy.
-- Ícones ao lado: `lucide-react` (ArrowRight, MessageCircle, tamanho 18–20).
-
-### Cards
-- `bg-card rounded-2xl shadow-card border border-border p-7 hover:shadow-elevated transition-shadow`.
-- Ícone/imagem no topo; título `font-heading font-bold`; body `text-muted-foreground leading-relaxed`.
-
-### CtaBar (barra intermediária)
-- Fundo `bg-gradient-gold`, texto `text-foreground`, botão navy sólido. Usar entre seções para conversão.
-
-### Modal de Diagnóstico
-- Sempre acionado pelos CTAs primários. Campos obrigatórios: Nome, Telefone (máscara BR), Alíquota Compra, Alíquota Venda, Substituição Tributária, PF/PJ, Faturamento. Botão submit `id="btn-especialista"`.
-- Após submit: mensagem inline de sucesso "Recebemos suas respostas…" (não redirecionar).
-
-### Botão flutuante WhatsApp
-- Único elemento verde (`#25D366`), circular `w-14 h-14`, `fixed bottom-6 right-6 z-50`, spring in delay 2s.
-
----
-
-## 7. Animação (Framer Motion)
-
-Padrão em toda seção:
-```tsx
-initial={{ opacity: 0, y: 20-30 }}
-whileInView={{ opacity: 1, y: 0 }}
-viewport={{ once: true }}
-transition={{ delay: 0.1 * i, duration: 0.6-0.7 }}
-```
-Hero usa `animate` (não `whileInView`) com delays escalonados 0.3/0.5/0.7/0.9s.
-
----
-
-## 8. Estrutura obrigatória da landing
-
-Ordem fixa das seções:
-1. Header (fixo)
-2. Hero (imagem porto + overlay gradient-hero 85%)
-3. SEO Intro (texto reforço de palavras-chave)
-4. Problema (dores do público)
-5. Solução (proposta de valor)
-6. Benefícios (métricas)
-7. **CtaBar** "Fale com a Bluestone"
-8. Incentivos Fiscais (COMPETE-ES 1,14% + INVEST-ES 1,035%)
-9. Como Funciona (metodologia 4 passos, cards `h-full`)
-10. Autoridade (números + prova social)
-11. Especialistas (2 cards centrados, foto 4:3, `max-w-3xl`)
-12. **CtaBar** "Fale com um de nossos especialistas"
-13. Por que Bluestone / Segmentos
-14. Depoimentos
-15. CTA Final (fundo `gradient-hero`)
-16. Footer (dark navy, ícone WhatsApp circular)
-17. Botão flutuante WhatsApp
-
----
-
-## 9. Copy & mensagens fixas
-
-- **H1 hero:** "Reduza o ICMS da sua empresa com [gold]incentivos fiscais[/gold] no Espírito Santo"
-- **Proposta central:** "Redução de até 90% da carga de ICMS".
-- **COMPETE-ES:** "exatamente 1,14% de ICMS nas vendas interestaduais".
-- **INVEST-ES:** carga efetiva 1,035%.
-- **CTA principal:** "Solicite seu Diagnóstico Gratuito".
-- **CTA WhatsApp:** "Fale com um especialista" / "Fale com a Bluestone".
-- **Mensagem WhatsApp (pré-preenchida):** `Vim do site da Bluestone. Gostaria de saber mais sobre os serviços de consultoria`
-- **Número WhatsApp:** `5527992915203`
-
----
-
-## 10. SEO & tracking
-
-- `<html lang="pt-BR">`, canonical, OG + Twitter tags completas.
-- Title < 60 chars com "ICMS" + "Espírito Santo" + "Bluestone".
-- Meta description < 160 chars.
-- `sitemap.xml`, `robots.txt`, favicon `/favicon.png`.
-- Google Tag Manager `GTM-N8FSXLXN` (head + noscript body).
-- Eventos: `dataLayer.push({event:'form_submit'})` no sucesso do modal; `whatsapp_click` disparado no listener global de `a[href*="wa.me"]`.
-
----
-
-## 11. Integração EmailJS
-
-- Service: `service_l58lt7h` · Template: `template_0bybmpi` · Public key: `_OGwBeDRRiCyReUMc`
-- Destino: `bluestone.comercial@gmail.com`
-- **Regra crítica:** `templateParams` deve conter EXATAMENTE 7 chaves: `nome`, `telefone`, `aliquota_compra`, `aliquota_venda`, `st`, `tipo`, `faturamento`. Qualquer chave extra → erro 400.
-
----
-
-## 12. Stack técnica
-
-- React 18 + Vite 5 + TypeScript 5
-- Tailwind CSS v3 + shadcn/ui
-- Framer Motion (animações)
-- lucide-react (ícones)
-- EmailJS (`@emailjs/browser`)
-- Deploy Vercel com `NODE_VERSION=22`
-
----
-
-## 13. Contato institucional (footer)
-
-- Endereço: Vitória/ES
-- Telefone/WhatsApp: +55 (27) 9 9291-5203
-- E-mail: bluestone.comercial@gmail.com
-- Domínio: bluestoneconsultoriaes.com.br
-
----
-
-**Como usar no novo mockup:** cole a seção 2 no `index.css`, replique as extensões da seção 4 no `tailwind.config.ts`, importe as fontes da seção 3, e siga as regras de componentes (6), animação (7) e estrutura (8). Mantenha copy e CTAs conforme seções 9–11.
+- Nenhuma dependência nova; nenhuma mudança de backend.
+- Arquivos tocados: `Index.tsx`, `CtaBar.tsx`, `CtaSection.tsx`, `HeroSection.tsx`, `Footer.tsx`, `WhatsAppButton.tsx`, `DiagnosticModal.tsx`.
+- O WhatsApp deixa de ser um caminho de saída direto e passa a ser o passo final após a qualificação — todo lead é capturado por e-mail antes do redirecionamento.
