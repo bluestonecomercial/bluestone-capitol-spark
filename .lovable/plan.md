@@ -1,52 +1,27 @@
-# Onde as respostas do checklist estão hoje (e como registrar de verdade)
+# Direcionar o checklist para comercial@bluestoneconsultoriaes.com.br
 
-## Situação atual (verificada no código)
+O destinatário do checklist não está no código do site — ele é definido dentro do template do EmailJS (`template_0bybmpi`). Por isso a mudança é feita no painel do EmailJS, sem alteração de código.
 
-O formulário do Diagnóstico Express (`DiagnosticModal`) tem **um único destino**: um e-mail enviado pelo EmailJS
-(serviço `service_l58lt7h`, template `template_0bybmpi`) para a caixa configurada nesse template.
+## Passo a passo no EmailJS
 
-Não existe banco de dados, backend ou planilha no projeto — nenhuma integração de Cloud/Supabase está presente.
-Ou seja: **se o e-mail falhar, a resposta é perdida e ninguém percebe.**
+1. Acesse dash.emailjs.com e faça login na conta da Bluestone.
+2. Menu **Email Templates** > abra o template `template_0bybmpi`.
+3. Na aba **Settings** (ou no topo do editor), campo **To Email**: substitua o endereço atual por
+   `comercial@bluestoneconsultoriaes.com.br`
+4. Opcional (recomendado): em **Reply To**, use `{{email}}` se o template já tiver esse campo, ou deixe o padrão.
+5. Clique em **Save**.
+6. Use **Test It** para enviar um envio de teste e confirmar que chega na nova caixa.
 
-Dois problemas encontrados no fluxo:
+Observação: se quiser manter uma cópia no e-mail antigo, adicione o segundo endereço no campo **BCC** do mesmo template.
 
-1. A tela de sucesso é exibida **antes** da resposta do EmailJS. Se o envio retornar erro (por exemplo o erro 400
-   por chave extra no template), o cliente vê "Recebemos suas respostas" e o lead simplesmente desaparece —
-   o erro só aparece no console do navegador.
-2. Não há nenhum registro histórico dos leads: não é possível consultar quantos preencheram, quando, ou reenviar.
+## Validação
 
-## O que propomos
+Após salvar, preencher o formulário no site (Solicitar Diagnóstico) e confirmar o recebimento em `comercial@bluestoneconsultoriaes.com.br`.
 
-### 1. Passar a gravar todo lead em banco (Lovable Cloud)
+## Nota técnica
 
-Criar uma tabela de leads no backend integrado, com: nome, telefone, as 5 respostas (ICMS compra, ICMS venda, ST,
-PF/PJ, faturamento), data/hora, página de origem e status do e-mail (enviado / falhou).
+O payload enviado pelo site continua com exatamente os mesmos campos (nome, telefone e as respostas do checklist). Incluir uma variável de destinatário no código exigiria editar o campo **To** do template para `{{to_email}}` e ampliar o payload — não é necessário nesta abordagem e evita risco de erro 400 no envio.
 
-A gravação acontece **primeiro**, antes do e-mail. Assim o lead nunca se perde, mesmo que o EmailJS falhe.
-Inserção pública (qualquer visitante pode enviar o formulário), leitura bloqueada ao público — nenhum visitante
-consegue listar os leads de outras pessoas.
+## Se preferir mais segurança depois
 
-### 2. Corrigir a ordem do sucesso
-
-A tela de sucesso passa a ser exibida após a gravação. Se algo falhar de forma irrecuperável, mostramos uma
-mensagem de erro com o WhatsApp como alternativa, em vez de um falso "recebemos".
-
-### 3. Manter o e-mail exatamente como está
-
-O envio ao EmailJS continua com os mesmos 7 campos (`nome`, `telefone`, `icms_compra`, `icms_venda`, `st`,
-`tipo_cliente`, `faturamento`) — nenhuma chave extra, para não reintroduzir o erro 400. O e-mail passa a ser
-o aviso, e o banco a fonte da verdade.
-
-### 4. (Opcional) Painel de leads
-
-Uma rota protegida `/leads` com login para o time comercial visualizar e exportar os leads em CSV.
-Podemos deixar para uma segunda etapa.
-
-## Detalhes técnicos
-
-- Ativar Lovable Cloud e criar `public.leads` com GRANTs explícitos, RLS ativa, policy de `INSERT` para `anon`
-  e `authenticated`, sem policy de `SELECT` público.
-- `DiagnosticModal.handleSubmit` passa a ser `async`: insert no banco → `setSubmitted(true)` → `emailjs.send` →
-  atualiza o status de e-mail no registro.
-- Botão de envio com estado de carregamento para evitar duplo clique / duplicidade de leads.
-- `dataLayer.push({ event: 'form_submit' })` permanece disparando no sucesso.
+Opcionalmente, em um segundo momento, os leads podem ser gravados também em banco (Lovable Cloud), garantindo que nenhuma resposta se perca caso o e-mail falhe.
