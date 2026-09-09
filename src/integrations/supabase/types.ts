@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          created_at: string
+          faturamento: string | null
+          icms_compra: string | null
+          icms_venda: string | null
+          id: string
+          nome: string
+          st: string | null
+          telefone: string
+          tipo_cliente: string | null
+        }
+        Insert: {
+          created_at?: string
+          faturamento?: string | null
+          icms_compra?: string | null
+          icms_venda?: string | null
+          id?: string
+          nome: string
+          st?: string | null
+          telefone: string
+          tipo_cliente?: string | null
+        }
+        Update: {
+          created_at?: string
+          faturamento?: string | null
+          icms_compra?: string | null
+          icms_venda?: string | null
+          id?: string
+          nome?: string
+          st?: string | null
+          telefone?: string
+          tipo_cliente?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
