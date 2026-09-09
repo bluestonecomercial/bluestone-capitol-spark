@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
@@ -89,34 +90,12 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
     return raw || "";
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!allAnswered) {
       setShowValidation(true);
       return;
     }
 
-    const lines = questions.map((q) => {
-      const shortLabel = q.id === "icms_compra"
-        ? "ICMS Compra"
-        : q.id === "icms_venda"
-        ? "ICMS Venda"
-        : q.id === "st"
-        ? "ST"
-        : q.id === "tipo_cliente"
-        ? "Vende para"
-        : "Faturamento";
-      return `- ${shortLabel}: ${getAnswerText(q)}`;
-    });
-
-    setSubmitted(true);
-
-    // Dispara evento no Google Tag Manager
-    if (typeof window !== 'undefined') {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({ event: 'form_submit' });
-    }
-
-    // Envia e-mail via EmailJS
     const templateParams = {
       nome: nome.trim(),
       telefone,
@@ -127,10 +106,16 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
       faturamento: getAnswerText(questions[4]),
     };
 
+    setSubmitted(true);
+
+    // Grava no banco (Lovable Cloud) para nao perder o lead
+    const { error } = await supabase.from("leads").insert(templateParams);
+    if (error) console.error("Erro ao salvar lead:", error.message);
+
+    // Envia e-mail via EmailJS
     emailjs.init("_OGwBeDRRiCyReUMc");
     emailjs.send("service_l58lt7h", "template_0bybmpi", templateParams)
       .then(() => {
-        console.log("Enviado com sucesso");
         (window as any).dataLayer = (window as any).dataLayer || [];
         (window as any).dataLayer.push({
           event: 'form_submit',
