@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 
 interface DiagnosticModalProps {
@@ -62,6 +63,10 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
   const [otherValues, setOtherValues] = useState<Record<string, string>>({});
   const [showValidation, setShowValidation] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const inFlight = useRef(false);
+  const savedPayload = useRef<string | null>(null);
 
   const selectAnswer = (questionId: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: value }));
@@ -91,6 +96,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
   };
 
   const handleSubmit = async () => {
+    if (inFlight.current) return;
     if (!allAnswered) {
       setShowValidation(true);
       return;
@@ -106,31 +112,44 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
       faturamento: getAnswerText(questions[4]),
     };
 
-    setSubmitted(true);
-
-    // Grava no banco (Lovable Cloud) para nao perder o lead
-    const { error } = await supabase.from("leads").insert(templateParams);
-    if (error) console.error("Erro ao salvar lead:", error.message);
-
-    // Envia e-mail via EmailJS
-    emailjs.init("_OGwBeDRRiCyReUMc");
-    emailjs.send("service_l58lt7h", "template_0bybmpi", templateParams)
-      .then(() => {
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
+    inFlight.current = true;
+    setIsSubmitting(true);
+    setSubmitError("");
+    const payloadKey = JSON.stringify(templateParams);
+    try {
+      if (savedPayload.current !== payloadKey) {
+        const { error } = await supabase.from("leads").insert(templateParams);
+        if (error) throw new Error("save_failed");
+        savedPayload.current = payloadKey;
+        const analyticsWindow = window as Window & { dataLayer?: Record<string, string>[] };
+        analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+        analyticsWindow.dataLayer.push({
           event: 'form_submit',
           event_category: 'lead',
           event_label: 'formulario_contato'
         });
-      })
-      .catch((err) => console.error("Erro:", err));
+      }
+      emailjs.init("_OGwBeDRRiCyReUMc");
+      await emailjs.send("service_l58lt7h", "template_0bybmpi", templateParams);
+      setSubmitted(true);
+    } catch {
+      setSubmitError(savedPayload.current === payloadKey
+        ? "Suas respostas foram salvas, mas o envio por e-mail falhou. Tente novamente para reenviar o e-mail."
+        : "Não foi possível salvar suas respostas. Tente novamente; os campos preenchidos foram mantidos.");
+    } finally {
+      inFlight.current = false;
+      setIsSubmitting(false);
+    }
   };
 
   const isUnanswered = (id: string) =>
     showValidation && (!answers[id] || (answers[id] === "__other__" && !otherValues[id]?.trim()));
 
   const handleClose = (val: boolean) => {
+    if (inFlight.current) return;
     if (!val) {
+      savedPayload.current = null;
+      setSubmitError("");
       setSubmitted(false);
       setNome("");
       setTelefone("");
@@ -155,13 +174,13 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
             <p className="text-primary-foreground/70 text-base max-w-md">
               Nosso especialista entrará em contato em breve com sua planilha de pré-viabilidade personalizada.
             </p>
-            <button
+            <Button
               type="button"
               onClick={() => handleClose(false)}
               className="mt-2 px-8 py-3 rounded-lg bg-gradient-gold text-foreground font-bold hover:opacity-90 transition-opacity"
             >
               Fechar
-            </button>
+            </Button>
           </div>
         ) : (
         <>
@@ -184,6 +203,7 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
         </div>
 
         {/* Contact fields */}
+        <fieldset disabled={isSubmitting} className="min-w-0 border-0 p-0 m-0">
         <div className="px-6 pt-6 space-y-4">
           <div>
             <label className={`block text-sm font-semibold mb-2 ${
@@ -292,20 +312,23 @@ const DiagnosticModal = ({ open, onOpenChange }: DiagnosticModalProps) => {
           </AnimatePresence>
         </div>
 
+        </fieldset>
         {/* Submit */}
         <div className="p-6 pt-2 border-t border-gold/10">
-          <button
+          {submitError && <p role="alert" className="text-gold text-sm mb-4">{submitError}</p>}
+          <Button
             id="btn-especialista"
             type="button"
             onClick={handleSubmit}
-            className="w-full inline-flex items-center justify-center gap-3 bg-gradient-gold text-foreground font-bold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.98]"
+            disabled={isSubmitting}
+            className="h-auto w-full inline-flex items-center justify-center gap-3 bg-gradient-gold text-foreground font-bold px-8 py-4 rounded-lg text-base hover:opacity-90 transition-opacity active:scale-[0.98]"
           >
             <MessageCircle size={20} />
-            Falar com Especialista
+            {isSubmitting ? "Enviando..." : submitError ? "Tentar novamente" : "Falar com Especialista"}
             <ArrowRight size={18} />
-          </button>
+          </Button>
           <p className="text-primary-foreground/40 text-xs text-center mt-3">
-            Você será direcionado ao WhatsApp para conversar com nosso especialista.
+            Suas respostas serão encaminhadas à nossa equipe para análise.
           </p>
         </div>
         </>
