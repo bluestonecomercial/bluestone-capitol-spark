@@ -10,8 +10,8 @@ function fill() {
   render(<DiagnosticModal open onOpenChange={() => {}} />);
   fireEvent.change(screen.getByPlaceholderText("Seu nome completo"), { target: { value: "Teste" } });
   fireEvent.change(screen.getByPlaceholderText("(27) 99999-9999"), { target: { value: "27999999999" } });
-  screen.getAllByRole("button", { name: "7%", exact: true }).forEach(button => fireEvent.click(button));
-  ["Não", "PJ", "Menor que R$10MM"].forEach(name => fireEvent.click(screen.getByRole("button", { name, exact: true })));
+  screen.getAllByRole("button", { name: "7%" }).forEach(button => fireEvent.click(button));
+  ["Não", "PJ", "Menor que R$10MM"].forEach(name => fireEvent.click(screen.getByRole("button", { name })));
   fireEvent.click(screen.getByRole("button", { name: "Falar com Especialista" }));
 }
 
